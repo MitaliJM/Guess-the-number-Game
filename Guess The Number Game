@@ -1,0 +1,75 @@
+import java.util.Random;
+import java.util.Scanner;
+
+class game {
+	public int number,inputNumber,noofguesses;
+	public int getnoofguesses () {
+		return noofguesses;
+	}
+	public void setnoofguesses(int noofguesses) {
+		this.noofguesses=noofguesses;
+	}
+	game(){
+		Random rand = new Random();
+		this.number=rand.nextInt(100);
+	}
+	void takeuserinput() {
+		System.out.println("Guess the number");
+		Scanner sc= new Scanner(System.in);
+		inputNumber=sc.nextInt();
+	}
+	boolean isCorrectNumber(){
+        noofguesses++;
+        if (inputNumber==number){
+            System.out.format("Yes you guessed it right, it was %d\nYou guessed it in %d attempts", number, noofguesses);
+            return true;
+        }
+        else if(inputNumber<number){
+            System.out.println("Too low...");
+        }
+        else if(inputNumber>number){
+            System.out.println("Too high...");
+        }
+        return false;
+    }
+
+}
+
+public class Exercise3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		game g = new game();
+		boolean b = false;
+		while(!b) {
+			g.takeuserinput();
+			b=g.isCorrectNumber();
+		}
+
+	}
+
+}
+
+/*OUTPUT:
+ * Guess the number
+23
+Too low...
+Guess the number
+45
+Too high...
+Guess the number
+40
+Too high...
+Guess the number
+35
+Too high...
+Guess the number
+30
+Too high...
+Guess the number
+25
+Too low...
+Guess the number
+27
+Yes you guessed it right, it was 27
+You guessed it in 7 attempts */
